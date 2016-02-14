@@ -4,7 +4,7 @@
   /* Global
    *
    */
-  var maxChar = 0;
+  // var maxChar = 0;
 
 
   /* Generate
@@ -17,12 +17,11 @@
     var barWidth = 50,
         barSpacer = 10,
         labelSpacer = 10,
-        defaultBarStart = 50,
-        barStart = defaultBarStart + maxChar;
+        barStart = 250;
 
     // Make svg
     var svg = d3.select("#content-charts").append("svg")
-     .attr("width", 500)
+     .attr("width", 700)
      .attr("height", (barWidth + barSpacer) * data.length);
 
     // Draw bar chart
@@ -43,13 +42,14 @@
     bar.append("text")
       .attr("x", 0)
       .attr("y", barWidth / 2)
-      // .attr("text-anchor", "end")
+      .attr("text-anchor", "end")
       .attr("fill", "black")
+      .attr("align", "right")
       .text(function(d) {return d.building});
 
     // Write text Label
     bar.append("text")
-      .attr("x", function(d) {return d.height_px - labelSpacer})
+      .attr("x", function(d) {return (d.height_px - labelSpacer) + barStart})
       .attr("y", barWidth / 2)
       .attr("fill", "white")
       .attr("text-anchor", "end")
@@ -61,22 +61,19 @@
     *
     *    return: Max number of characters of array elements.
     */
-    function findMax(input) {
+    function findMax(input, key) {
       var maxChar = 0;
-      console.log("Stuff");
       if (input) {
         // Cycle through elements in array if it exists
         input.forEach(function(element) {
-          console.log(element);
           // If the element's length is greater than the current max, update max
-          if (element.length > maxChar) {
-            maxChar = element.length;
+          if (element[key].length > maxChar) {
+            maxChar = element[key].length;
           }
         });
         // Return the greatest number of characters of the array elements
         return maxChar;
       } else {
-        console.log("everytime");
         return 0;
       }
     }
@@ -98,7 +95,8 @@
       console.log(error.responseURL + " " + error.status + " " + error.statusText);
     } else {
       console.log("Data loaded!");
-      maxChar = findMax(data.building);
+      console.log(data);
+      // maxChar = findMax(data, "building");
       generate(data);
     }
   });
