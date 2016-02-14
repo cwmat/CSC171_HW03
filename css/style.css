@@ -1,0 +1,19 @@
+#content-tables {
+  border-left: 0.15em dashed #646766;
+}
+
+.content {
+  padding: 0 2em;
+}
+
+#building-name {
+  margin-bottom: 1em;
+}
+
+g {
+  margin-bottom: 5em;
+}
+
+h1 {
+  margin-bottom: 1.5em;
+}
