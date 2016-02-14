@@ -40,7 +40,7 @@
 
     // Write text Label
     bar.append("text")
-      .attr("x", 0)
+      .attr("x", 210) // Not sure why I had to add this offset...
       .attr("y", barWidth / 2)
       .attr("text-anchor", "end")
       .attr("fill", "black")
@@ -95,9 +95,11 @@
       console.log(error.responseURL + " " + error.status + " " + error.statusText);
     } else {
       console.log("Data loaded!");
-      console.log(data);
       // maxChar = findMax(data, "building");
-      generate(data);
+      var sorted = data.sort(function(a, b) {
+        return b.height_m - a.height_m;
+      });
+      generate(sorted);
     }
   });
 
