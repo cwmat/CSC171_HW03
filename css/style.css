@@ -17,3 +17,11 @@ g {
 h1 {
   margin-bottom: 1.5em;
 }
+
+.building-rect:hover {
+  fill: rgb(251, 16, 148);
+}
+
+.building-rect-selected {
+  fill: rgb(100, 185, 39);
+}
